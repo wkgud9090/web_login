@@ -1,0 +1,36 @@
+{% extends 'layout_small.html'%}
+
+{% block contents %}
+<h1 class="text-center">START PAGE</h1>
+{% if session['userID'] %}
+<table class="table table-hover">
+    <tr class="table-info">
+        <th class="text-center">NO</th>
+        <th class="text-center">ID</th>
+        <th class="text-center">NAME</th>
+        <th class="text-center">PASSWORD</th>
+        <th class="text-center">Detail</th>
+        <th class="text-center">Delete</th>
+        <th class="text-center">Update</th>
+    </tr>
+    {% for temp_dic in member_list %}
+    <tr>
+        <td class="text-center">{{temp_dic.userNo}}</td>
+        <td class="text-center">{{temp_dic.userID}}</td>
+        <td class="text-center">{{temp_dic.userName}}</td>
+        <td class="text-center">{{temp_dic.pwd}}</td>
+        <td><a href = "/member/{{temp_dic.userNo}}" class="btn btn-primary"> View </a></td>
+        <td><a href = "/member_delete/{{temp_dic.userNo}}" class="btn btn-success"> Delete </a></td>
+        <td><a href = "/member_update/{{temp_dic.userNo}}" class="btn btn-danger"> Edit </a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<hr>
+<h2 class="text-center">
+    <a href="/login" class="btn btn-dark">MEMBER LOGIN</a>
+</h2>
+{% endif %}
+
+{% endblock %}
